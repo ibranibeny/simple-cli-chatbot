@@ -11,7 +11,7 @@ tokenizer = AutoTokenizer.from_pretrained(token_model)
 model = OVModelForCausalLM.from_pretrained(model_id, use_cache=True)
 messages = [
     {"role": "system", "content": "You're are a helpful Assistant. Remember, maintain a natural tone. Be precise, concise, and casual"},
-    {"role": "user", "content": "Tell me about favorite place in Sydney?"},
+    {"role": "user", "content": "Tell me about favorite places in Bali?"},
 ]
 
 input_ids = tokenizer.apply_chat_template(
@@ -41,7 +41,7 @@ first_response = outputs[0][input_ids.shape[-1]:]
 
 
 start_time = time.time()
-max_new_tokens=64
+max_new_tokens=128
 outputs = model.generate(
     input_ids,
     max_new_tokens=max_new_tokens,
@@ -58,5 +58,5 @@ throughput = max_new_tokens / (total_latency / 1000)
 print(f"First generated text : {tokenizer.decode(first_response, skip_special_tokens=True)}")
 print(f"Total generated text : {tokenizer.decode(response, skip_special_tokens=True)}")
 print(f"First token latency: {first_token_latency:.2f} ms")
-print(f"Average latyency per token: {average_latency_per_token:.2f} ms")
+print(f"Average latency per token: {average_latency_per_token:.2f} ms")
 print(f"Throughput: {throughput:.2f} tokens/s")
