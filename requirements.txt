@@ -1,0 +1,9 @@
+transformers
+datasets
+huggingface-hub
+openvino
+torch 
+torchvision 
+torchaudio
+nncf
+accelerate
